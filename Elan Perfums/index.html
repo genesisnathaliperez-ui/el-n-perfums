@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉLAN PARFUMS | Haute Parfumerie</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS ESTILOS -->
+    <style>
+        /* ==========================================================================
+           VARIABLES & RESET
+           ========================================================================== */
+        :root {
+            --bg-dark: #111111;
+            --bg-light: #FFFFFF;
+            --color-rose-gold: #D4A373;
+            --color-rose-gold-hover: #bc8c5c;
+            --color-pink-powder: #F7E7E6;
+            --color-gray-soft: #f9f9f9;
+            --color-gray-border: #e0e0e0;
+            --text-dark: #111111;
+            --text-muted: #666666;
+            --text-light: #FFFFFF;
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ==========================================================================
+           COMPONENTES REUTILIZABLES & UTILIDADES
+           ========================================================================== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-padding {
+            padding: 7rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .section-header .subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--color-rose-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-title);
+            font-size: 2.8rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--bg-dark);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--color-rose-gold);
+            color: var(--text-light);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            border: 1px solid var(--color-rose-gold);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            border-color: var(--bg-dark);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: transparent;
+            color: var(--bg-dark);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            border: 1px solid var(--bg-dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        /* ANIMACIONES DE SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition);
+            transition-duration: 0.8s;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           NAVBAR
+           ========================================================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.8rem 0;
+            transition: var(--transition);
+            background-color: transparent;
+        }
+
+        .navbar.scrolled {
+            background-color: var(--bg-dark);
+            padding: 1.2rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .logo span {
+            color: var(--color-rose-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-rose-gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        /* ==========================================================================
+           HERO SECTION (IMAGEN DE LOGO)
+           ========================================================================== */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(17, 17, 17, 0.65), rgba(17, 17, 17, 0.65)), 
+                        url('./gpt-image-2_Diseña_un_logotipo_de_lujo_para_una_marca_de_perfumes_llamada_ÉLAN_PARFUMS_._Q-0.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-title);
+            font-size: 4.5rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--color-rose-gold);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ==========================================================================
+           NUESTRA HISTORIA
+           ========================================================================== */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .story-img {
+            position: relative;
+        }
+
+        .story-img img {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        .story-img::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--color-rose-gold);
+            z-index: -1;
+        }
+
+        .story-content h3 {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .story-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* ==========================================================================
+           COLECCIONES
+           ========================================================================== */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .collection-card {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .collection-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .collection-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(17,17,17,0.85), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .collection-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .collection-card h3 {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .collection-btn {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-rose-gold);
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           CATÁLOGO & PRODUCTOS
+           ========================================================================== */
+        .catalog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 2px solid transparent;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            color: var(--bg-dark);
+            border-color: var(--color-rose-gold);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background-color: var(--bg-light);
+            transition: var(--transition);
+            border: 1px solid var(--color-gray-border);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: transparent;
+        }
+
+        .product-img {
+            height: 320px;
+            overflow: hidden;
+            background-color: var(--color-gray-soft);
+            position: relative;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            margin-bottom: 0.4rem;
+            font-weight: 400;
+        }
+
+        .product-price {
+            color: var(--color-rose-gold);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        /* ==========================================================================
+           CARRUSEL DESTACADOS
+           ========================================================================== */
+        .featured-carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding: 1rem 0;
+        }
+
+        .featured-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .featured-card {
+            min-width: calc(33.333% - 1.35rem);
+            background: var(--bg-light);
+            border: 1px solid var(--color-gray-border);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .featured-card img {
+            height: 250px;
+            margin: 0 auto 1.5rem auto;
+            object-fit: cover;
+        }
+
+        /* ==========================================================================
+           POR QUÉ ELEGIR ÉLAN
+           ========================================================================== */
+        .features-section {
+            background-color: var(--color-pink-powder);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            color: var(--color-rose-gold);
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h4 {
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           TESTIMONIOS
+           ========================================================================== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--color-gray-soft);
+            padding: 2.5rem;
+            text-align: center;
+            border-radius: 2px;
+        }
+
+        .testimonial-stars {
+            color: var(--color-rose-gold);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-user {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           CONTACTO
+           ========================================================================== */
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 1px solid var(--color-gray-border);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            background-color: var(--color-gray-soft);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--color-rose-gold);
+            background-color: var(--bg-light);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 5rem 0 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            max-width: 300px;
+        }
+
+        .footer-column h5 {
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            color: var(--color-rose-gold);
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a, .footer-column p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--color-rose-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           MODAL DE PRODUCTO
+           ========================================================================== */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(17, 17, 17, 0.85);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            padding: 1rem;
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background-color: var(--bg-light);
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            transform: scale(0.9);
+            transition: var(--transition);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 10;
+            background: none;
+            border: none;
+            color: var(--bg-dark);
+        }
+
+        .modal-img {
+            height: 100%;
+            background-color: var(--color-gray-soft);
+        }
+
+        .modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-details {
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-title {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-price {
+            font-size: 1.2rem;
+            color: var(--color-rose-gold);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .notes-list {
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--color-gray-border);
+            padding-top: 1rem;
+        }
+
+        .notes-list li {
+            margin-bottom: 0.4rem;
+        }
+
+        .notes-list strong {
+            color: var(--bg-dark);
+        }
+
+        /* ==========================================================================
+           RESPONSIVE DESIGN (MOBILE & TABLET)
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .collections-grid { grid-template-columns: repeat(2, 1fr); }
+            .features-grid { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+            .featured-card { min-width: calc(50% - 1rem); }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.8rem; }
+            .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .story-img::after { display: none; }
+            .collections-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .modal-content { grid-template-columns: 1fr; }
+            .modal-img { height: 300px; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--bg-dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+            }
+            .nav-links.active { right: 0; }
+            .mobile-toggle { display: flex; }
+            .featured-card { min-width: 100%; }
+        }
+
+        @media (max-width: 480px) {
+            .features-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">ÉLAN <span>PARFUMS</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#historia">Nosotros</a></li>
+                <li><a href="#colecciones">Colecciones</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
+        <div class="hero-content reveal">
+            <h1 class="hero-title">Élan Parfums</h1>
+            <p class="hero-subtitle">The Essence of Luxury</p>
+            <p class="hero-desc">Creaciones olfativas exclusivas diseñadas con la más alta perfumería francesa para dejar una huella imborrable.</p>
+            <a href="#catalogo" class="btn-primary">Explorar Colección</a>
+        </div>
+    </section>
+
+    <!-- NUESTRA HISTORIA -->
+    <section class="section-padding" id="historia">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-img reveal">
+                    <img src="./lucid-origin_Kit_de_Regalo_Caja_premium_negra_mate_con_detalles_en_oro_rosa_que_contiene_un_p-0.jpg" alt="Frasco de perfume artesanal">
+                </div>
+                <div class="story-content reveal">
+                    <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                        <span class="subtitle">Nuestra Esencia</span>
+                        <h2>Alta Perfumería de Inspiración Francesa</h2>
+                    </div>
+                    <p>Nacida en el corazón del lujo, ÉLAN PARFUMS reinterpreta la alta perfumería tradicional combinando sofisticación francesa e ingredientes raros seleccionados globalmente.</p>
+                    <p>Cada una de nuestras formulaciones es una obra de arte embotellada, concebida para transmitir elegancia, distinción y un lujo atemporal que trasciende modas efímeras.</p>
+                    <a href="#catalogo" class="btn-outline">Descubrir Perfumes</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLECCIONES -->
+    <section class="section-padding" id="colecciones" style="background-color: var(--color-gray-soft);">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="subtitle">Exclusividad</span>
+                <h2>Nuestras Colecciones</h2>
+            </div>
+            <div class="collections-grid">
+                <div class="collection-card reveal" onclick="filterCatalog('femenina')">
+                    <img src="./lucid-origin_Sweet_Rose_El_perfume_está_rodeado_de_rosas_rosadas_y_blancas_pétalos_disperso-0.jpg" alt="Línea Femenina">
+                    <div class="collection-overlay">
+                        <h3>Línea Femenina</h3>
+                        <span class="collection-btn">Ver colección &rarr;</span>
+                    </div>
+                </div>
+                <div class="collection-card reveal" onclick="filterCatalog('masculina')">
+                    <img src="./lucid-origin_Black_Wood_El_perfume_está_rodeado_de_madera_oscura_cuero_negro_y_humo_sutil._F-0.jpg" alt="Línea Masculina">
+                    <div class="collection-overlay">
+                        <h3>Línea Masculina</h3>
+                        <span class="collection-btn">Ver colección &rarr;</span>
+                    </div>
+                </div>
+                <div class="collection-card reveal" onclick="filterCatalog('unisex')">
+                    <img src="./lucid-origin_White_Musk_El_perfume_aparece_entre_flores_blancas_telas_de_seda_y_una_atmósfer-0.jpg" alt="Línea Unisex">
+                    <div class="collection-overlay">
+                        <h3>Línea Unisex</h3>
+                        <span class="collection-btn">Ver colección &rarr;</span>
+                    </div>
+                </div>
+                <div class="collection-card reveal" onclick="filterCatalog('complementarios')">
+                    <img src="./gpt-image-2_Aceite_Aromático_Frasco_pequeño_de_vidrio_con_gotero_negro_mate_y_etiqueta_min-0.jpg" alt="Complementarios">
+                    <div class="collection-overlay">
+                        <h3>Complementarios</h3>
+                        <span class="collection-btn">Ver colección &rarr;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO DE PRODUCTOS -->
+    <section class="section-padding" id="catalogo">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="subtitle">Selección Privada</span>
+                <h2>Catálogo de Fragancias</h2>
+            </div>
+
+            <!-- FILTROS -->
+            <div class="catalog-filters reveal">
+                <button class="filter-btn active" onclick="filterProducts('todos', this)">Todos</button>
+                <button class="filter-btn" onclick="filterProducts('femenina', this)">Femeninos</button>
+                <button class="filter-btn" onclick="filterProducts('masculina', this)">Masculinos</button>
+                <button class="filter-btn" onclick="filterProducts('unisex', this)">Unisex</button>
+                <button class="filter-btn" onclick="filterProducts('complementarios', this)">Complementarios</button>
+            </div>
+
+            <!-- CONTENEDOR DE PRODUCTOS -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Se genera dinámicamente mediante JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTOS DESTACADOS (CARRUSEL) -->
+    <section class="section-padding" style="background-color: var(--color-gray-soft);">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="subtitle">Best Sellers</span>
+                <h2>Fragancias Destacadas</h2>
+            </div>
+            <div class="featured-carousel-wrapper reveal">
+                <div class="featured-track" id="featuredTrack">
+                    <!-- Dinámico por JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POR QUÉ ELEGIR ÉLAN -->
+    <section class="section-padding features-section">
+        <div class="container">
+            <div class="features-grid reveal">
+                <div class="feature-item">
+                    <div class="feature-icon">✨</div>
+                    <h4>Fragancias Premium</h4>
+                    <p>Concentraciones Parfum de máxima calidad.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⏳</div>
+                    <h4>Larga Duración</h4>
+                    <p>Fijación garantizada por más de 12 horas.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🇫🇷</div>
+                    <h4>Inspiración Francesa</h4>
+                    <p>Formuladas por perfumistas en Grasse.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌿</div>
+                    <h4>Ingredientes Exclusivos</h4>
+                    <p>Esencias naturales y aceites finos.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎁</div>
+                    <h4>Empaque de Lujo</h4>
+                    <p>Presentación diseñada para impresionar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="subtitle">Experiencias</span>
+                <h2>Lo Que Dicen Nuestros Clientes</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Vainilla & Ámbar es sencillamente espectacular. La duración es increíble y el empaque transmite sofisticación pura."</p>
+                    <div class="testimonial-user">
+                        <img src="./lucid-origin_White_Musk_El_perfume_aparece_entre_flores_blancas_telas_de_seda_y_una_atmósfer-0.jpg" class="testimonial-avatar" alt="Cliente">
+                        <span class="testimonial-name">Valeria M.</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Ocean Blue se convirtió en mi fragancia firma. No hay día que no reciba un elogio. Servicio impecable."</p>
+                    <div class="testimonial-user">
+                        <img src="./lucid-origin_Ocean_Blue_El_perfume_está_sobre_una_roca_negra_húmeda_frente_al_mar_con_olas_-0.jpg" class="testimonial-avatar" alt="Cliente">
+                        <span class="testimonial-name">Carlos V.</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"La presentación de los Kits de Regalo superó mis expectativas. Calidad digna de las mejores casas de perfumería."</p>
+                    <div class="testimonial-user">
+                        <img src="./lucid-origin_Kit_de_Regalo_Caja_premium_negra_mate_con_detalles_en_oro_rosa_que_contiene_un_p-0.jpg" class="testimonial-avatar" alt="Cliente">
+                        <span class="testimonial-name">Elena R.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="section-padding" id="contacto" style="background-color: var(--color-gray-soft);">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="subtitle">Atención Exclusiva</span>
+                <h2>Contacto Privado</h2>
+            </div>
+            <div class="contact-container reveal">
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Gracias por ponerse en contacto con ÉLAN PARFUMS. Un asesor le responderá en breve.');">
+                    <div class="form-group">
+                        <input type="text" placeholder="Nombre Completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Correo Electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="¿En qué podemos ayudarle?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">ÉLAN <span>PARFUMS</span></a>
+                    <p>Haute Parfumerie creada para dejar una estela de elegancia inolvidable.</p>
+                </div>
+                <div class="footer-column">
+                    <h5>Navegación</h5>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#historia">Nosotros</a></li>
+                        <li><a href="#colecciones">Colecciones</a></li>
+                        <li><a href="#catalogo">Catálogo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Redes</h5>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Contacto</h5>
+                    <p>contacto@elanparfums.com</p>
+                    <p>+33 (0)1 42 68 55 00</p>
+                    <p>Place Vendôme, París - Francia</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ÉLAN PARFUMS. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DE PRODUCTO -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-img">
+                <img id="modalImg" src="" alt="Producto">
+            </div>
+            <div class="modal-details">
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <div class="modal-price" id="modalPrice"></div>
+                <p class="modal-desc" id="modalDesc"></p>
+                <ul class="notes-list">
+                    <li><strong>Notas de Salida:</strong> <span id="modalSalida"></span></li>
+                    <li><strong>Notas de Corazón:</strong> <span id="modalCorazon"></span></li>
+                    <li><strong>Notas de Fondo:</strong> <span id="modalFondo"></span></li>
+                    <li><strong>Duración:</strong> <span id="modalDuracion"></span></li>
+                    <li><strong>Presentación:</strong> <span id="modalPresentacion"></span></li>
+                </ul>
+                <button class="btn-primary" onclick="alert('Producto añadido a su solicitud de compra exclusiva.'); closeModal();">Adquirir Fragancia</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT NATIVO CON TUS IMÁGENES EXACTAS -->
+    <script>
+        /* ==========================================================================
+           BASE DE DATOS DE PRODUCTOS CON ARCHIVOS LOCALES
+           ========================================================================== */
+        const products = [
+            // Femenina
+            { id: 1, name: 'Vainilla & Ámbar', category: 'femenina', price: '$180 USD', img: './lucid-origin_Vainilla_Ámbar_El_perfume_está_rodeado_de_vainas_de_vainilla_flores_crema_y_pi-0.jpg', desc: 'Una composición cálida y envolvente con toques florales sutiles.', salida: 'Orquídea silvestre, Bergamota', corazon: 'Vainilla de Madagascar', fondo: 'Ámbar dorado, Almizcle blanco', duracion: '14+ horas', presentacion: '100 ml Extrait de Parfum' },
+            { id: 2, name: 'Cherry Blossom', category: 'femenina', price: '$165 USD', img: './lucid-origin_Cherry_Blossom_El_perfume_se_encuentra_entre_delicadas_flores_de_cerezo_rosadas_-0.jpg', desc: 'Sutileza primaveral inspirada en los cerezos de Kioto.', salida: 'Flor de cerezo, Mandarina', corazon: 'Peonía rosa, Té verde', fondo: 'Madera de cedro', duracion: '10+ horas', presentacion: '100 ml Eau de Parfum' },
+            { id: 3, name: 'Sweet Rose', category: 'femenina', price: '$175 USD', img: './lucid-origin_Sweet_Rose_El_perfume_está_rodeado_de_rosas_rosadas_y_blancas_pétalos_disperso-0.jpg', desc: 'Rosas búlgaras cortadas al amanecer con un toque dulce.', salida: 'Pétalos de rosa, Frambuesa', corazon: 'Rosa de Grasse, Jazmín', fondo: 'Sándalo, Melocotón', duracion: '12+ horas', presentacion: '100 ml Eau de Parfum' },
+            { id: 4, name: 'Fresh Garden', category: 'femenina', price: '$150 USD', img: './lucid-origin_Fresh_Garden_El_perfume_está_rodeado_de_hojas_verdes_flores_blancas_y_ramas_fre-0.jpg', desc: 'Frescura botánica pura con notas verdes refinadas.', salida: 'Menta fresca, Limón italiano', corazon: 'Hoja de violeta, Lirio', fondo: 'Vetiver suave', duracion: '10+ horas', presentacion: '100 ml Eau de Parfum' },
+            { id: 5, name: 'Coco Paradise', category: 'femenina', price: '$160 USD', img: './lucid-origin_Coco_Paradise_El_perfume_está_acompañado_de_cocos_abiertos_flores_tropicales_b-0.jpg', desc: 'Un viaje sensorial exótico con notas cremosas y solares.', salida: 'Agua de coco, Flor de Tiaré', corazon: 'Ylang-ylang, Frangipani', fondo: 'Habka Tonka, Madera solar', duracion: '12+ horas', presentacion: '100 ml Eau de Parfum' },
+
+            // Masculina
+            { id: 6, name: 'Ocean Blue', category: 'masculina', price: '$185 USD', img: './lucid-origin_Ocean_Blue_El_perfume_está_sobre_una_roca_negra_húmeda_frente_al_mar_con_olas_-0.jpg', desc: 'Carácter marino profundo con fondo amaderado y elegante.', salida: 'Pomelo, Brisa marina', corazon: 'Salvia, Romero', fondo: 'Madera de deriva, Pachulí', duracion: '12+ horas', presentacion: '100 ml Parfum' },
+            { id: 7, name: 'Black Wood', category: 'masculina', price: '$195 USD', img: './lucid-origin_Black_Wood_El_perfume_está_rodeado_de_madera_oscura_cuero_negro_y_humo_sutil._F-0.jpg', desc: 'Intensidad de maderas ahumadas para un carácter imponente.', salida: 'Pimienta negra, Cardamomo', corazon: 'Oud ahumado, Cuero fino', fondo: 'Vetiver de Haití, Ámbar negro', duracion: '16+ horas', presentacion: '100 ml Extrait de Parfum' },
+            { id: 8, name: 'Intense Night', category: 'masculina', price: '$190 USD', img: './lucid-origin_Intense_Night_El_perfume_aparece_sobre_mármol_negro_con_un_cielo_nocturno_de_fo-0.jpg', desc: 'Sensualidad nocturna marcada por especias frías y resinas.', salida: 'Incienso, Nuez moscada', corazon: 'Cacao amargo, Tabaco rubio', fondo: 'Habas de Tonka, Vainilla oscura', duracion: '14+ horas', presentacion: '100 ml Eau de Parfum' },
+            { id: 9, name: 'Silver Fresh', category: 'masculina', price: '$170 USD', img: './gpt-image-2_Silver_Fresh_El_perfume_está_acompañado_de_hielo_agua_cristalina_y_hojas_de_me-0.jpg', desc: 'Elegancia vibrante y metálica para el hombre moderno.', salida: 'Jengibre plateado, Bergamota', corazon: 'Lavanda blanca, Enebro', fondo: 'Musgo de roble, Almizcle', duracion: '10+ horas', presentacion: '100 ml Eau de Parfum' },
+            { id: 10, name: 'Urban Style', category: 'masculina', price: '$175 USD', img: './lucid-origin_Urban_Style_El_perfume_aparece_en_una_ciudad_moderna_de_noche_con_luces_desenfoc-0.jpg', desc: 'Versatilidad urbana con sofisticación aromática.', salida: 'Manzana verde, Lavanda', corazon: 'Geranio, Menta', fondo: 'Madera de Cedro, Cuero', duracion: '11+ horas', presentacion: '100 ml Eau de Parfum' },
+
+            // Unisex
+            { id: 11, name: 'Citrus Fresh', category: 'unisex', price: '$160 USD', img: './lucid-origin_Citrus_Fresh_El_perfume_está_rodeado_de_limones_naranjas_y_hojas_verdes_con_peq-0.jpg', desc: 'Explosión de cítricos meditables con equilibrio amaderado.', salida: 'Naranja amarga, Yuzu', corazon: 'Neroli, Petitgrain', fondo: 'Almizcle blanco, Cedro', duracion: '10+ horas', presentacion: '100 ml Eau de Parfum' },
+            { id: 12, name: 'White Musk', category: 'unisex', price: '$180 USD', img: './lucid-origin_White_Musk_El_perfume_aparece_entre_flores_blancas_telas_de_seda_y_una_atmósfer-0.jpg', desc: 'Una segunda piel purísima, elegante y sedosa.', salida: 'Lirio del valle, Aldehídos', corazon: 'Almizcle blanco, Iris', fondo: 'Sándalo claro, Ámbar suave', duracion: '12+ horas', presentacion: '100 ml Eau de Parfum' },
+            { id: 13, name: 'Green Tea', category: 'unisex', price: '$155 USD', img: './lucid-origin_Green_Tea_El_perfume_está_rodeado_de_hojas_de_té_verde_frescas_bambú_y_piedra-0.jpg', desc: 'Serenidad aromática basada en ceremonias de té oriental.', salida: 'Té Matcha, Bergamota', corazon: 'Jazmín de noche, Cardamomo', fondo: 'Guayaco, Almizcle', duracion: '9+ horas', presentacion: '100 ml Eau de Parfum' },
+            { id: 14, name: 'Lavender Calm', category: 'unisex', price: '$165 USD', img: './lucid-origin_Lavender_Calm_El_perfume_está_rodeado_de_lavanda_sobre_un_fondo_claro_con_tonos-0.jpg', desc: 'Lavanda de la Provenza combinada con notas cremosas.', salida: 'Lavanda francesa, Salvia', corazon: 'Manzanilla, Leche de almendras', fondo: 'Vainilla, Madera clara', duracion: '11+ horas', presentacion: '100 ml Eau de Parfum' },
+
+            // Complementarios
+            { id: 15, name: 'Mini Perfumes (10 ml)', category: 'complementarios', price: '$45 USD', img: './gpt-image-2_Mini_Perfume_10_ml_Frasco_pequeño_de_10_ml_manteniendo_exactamente_el_mismo_dis-0.jpg', desc: 'Set de minitallas para viaje con tus fragancias favoritas.', salida: 'Variado', corazon: 'Variado', fondo: 'Variado', duracion: '10+ horas', presentacion: '3 x 10 ml Travel Spray' },
+            { id: 16, name: 'Perfumes de Bolsillo', category: 'complementarios', price: '$35 USD', img: './lucid-origin_Perfume_de_bolsillo_Botella_delgada_y_elegante_para_llevar_en_el_bolso_o_bolsill-0.jpg', desc: 'Atomizador de recarga de lujo en acabado Rose Gold.', salida: 'A elección', corazon: 'A elección', fondo: 'A elección', duracion: '10+ horas', presentacion: '15 ml Recargable' },
+            { id: 17, name: 'Body Splash', category: 'complementarios', price: '$60 USD', img: './lucid-origin_Body_Splash_Botella_alta_y_transparente_con_atomizador_negro_mate_y_detalles_en_-0.jpg', desc: 'Bruma corporal perfumada e hidratante.', salida: 'Rosas, Frutas solares', corazon: 'Agua de aloe', fondo: 'Almizcle ligero', duracion: '6+ horas', presentacion: '250 ml Mist' },
+            { id: 18, name: 'Aceites Aromáticos', category: 'complementarios', price: '$75 USD', img: './gpt-image-2_Aceite_Aromático_Frasco_pequeño_de_vidrio_con_gotero_negro_mate_y_etiqueta_min-0.jpg', desc: 'Aceite puro de perfume sin alcohol para alta fijación.', salida: 'Concentrado puro', corazon: 'Esencia pura', fondo: 'Fijación máxima', duracion: '18+ horas', presentacion: '30 ml Elixir Oil' },
+            { id: 19, name: 'Kits de Regalo', category: 'complementarios', price: '$220 USD', img: './lucid-origin_Kit_de_Regalo_Caja_premium_negra_mate_con_detalles_en_oro_rosa_que_contiene_un_p-0.jpg', desc: 'Caja cofrecito de lujo con perfume de 100ml + crema + mini.', salida: 'Selección de la casa', corazon: 'Selección de la casa', fondo: 'Selección de la casa', duracion: '14+ horas', presentacion: 'Cofre Edición Especial' }
+        ];
+
+        /* ==========================================================================
+           INICIALIZACIÓN & MANIPULACIÓN DEL DOM
+           ========================================================================== */
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            renderFeatured();
+            setupScrollEffects();
+            setupMobileMenu();
+        });
+
+        // RENDERIZAR PRODUCTOS EN EL CATÁLOGO
+        function renderProducts(items) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card reveal active';
+                card.innerHTML = `
+                    <div class="product-img">
+                        <img src="${product.img}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">${product.price}</div>
+                        <p class="product-desc">${product.desc}</p>
+                        <button class="btn-outline" style="width: 100%; font-size:0.75rem;" onclick="openModal(${product.id})">Ver Detalles</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // FILTRADO DE PRODUCTOS
+        function filterProducts(category, btnElement) {
+            if(btnElement) {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                btnElement.classList.add('active');
+            }
+
+            if (category === 'todos') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        function filterCatalog(category) {
+            const section = document.getElementById('catalogo');
+            section.scrollIntoView({ behavior: 'smooth' });
+            const btn = Array.from(document.querySelectorAll('.filter-btn')).find(b => b.textContent.toLowerCase().includes(category.substring(0,4)));
+            filterProducts(category, btn);
+        }
+
+        // CARRUSEL DESTACADOS
+        function renderFeatured() {
+            const track = document.getElementById('featuredTrack');
+            const featuredList = [products[0], products[5], products[10], products[1], products[6]];
+
+            featuredList.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'featured-card';
+                card.innerHTML = `
+                    <img src="${product.img}" alt="${product.name}">
+                    <h3 class="product-title">${product.name}</h3>
+                    <div class="product-price">${product.price}</div>
+                    <button class="btn-primary" style="margin-top: 1rem; padding: 0.6rem 1.5rem; font-size: 0.75rem;" onclick="openModal(${product.id})">Explorar</button>
+                `;
+                track.appendChild(card);
+            });
+
+            // Lógica de desplazamiento automático
+            let index = 0;
+            setInterval(() => {
+                index++;
+                if (index > featuredList.length - 3) index = 0;
+                const cardWidth = track.querySelector('.featured-card').offsetWidth + 32;
+                track.style.transform = `translateX(-${index * cardWidth}px)`;
+            }, 4000);
+        }
+
+        // MODAL DETALLES
+        function openModal(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            document.getElementById('modalImg').src = product.img;
+            document.getElementById('modalTitle').textContent = product.name;
+            document.getElementById('modalPrice').textContent = product.price;
+            document.getElementById('modalDesc').textContent = product.desc;
+            document.getElementById('modalSalida').textContent = product.salida;
+            document.getElementById('modalCorazon').textContent = product.corazon;
+            document.getElementById('modalFondo').textContent = product.fondo;
+            document.getElementById('modalDuracion').textContent = product.duracion;
+            document.getElementById('modalPresentacion').textContent = product.presentacion;
+
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+        }
+
+        // EFECTOS DE SCROLL & NAVBAR
+        function setupScrollEffects() {
+            const navbar = document.getElementById('navbar');
+            const reveals = document.querySelectorAll('.reveal');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                reveals.forEach(el => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = el.getBoundingClientRect().top;
+                    const elementVisible = 100;
+
+                    if (elementTop < windowHeight - elementVisible) {
+                        el.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // MENÚ MÓVIL
+        function setupMobileMenu() {
+            const toggle = document.getElementById('mobileToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            toggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
